@@ -2,26 +2,66 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/restaurant/RestaurantDetail.dart';
-
 import 'Restaurants.dart';
 
-class RestaurantList extends StatelessWidget {
+class RestaurantList extends StatefulWidget {
   static const routeName = '/restaurant_list';
+
   const RestaurantList({Key? key}) : super(key: key);
+
+  @override
+  State<RestaurantList> createState() => _RestaurantListState();
+}
+
+class _RestaurantListState extends State<RestaurantList> {
+  Widget customSearchBar = const Text("Restaurant App");
+  Icon customIcon = const Icon(Icons.search);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Restaurant App",
-        ),
+        title: customSearchBar,
+        actions: [
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  if (customIcon.icon == Icons.search) {
+                    customIcon = const Icon(Icons.cancel);
+                    customSearchBar = Container(
+                      height: 40,
+                      width: 400,
+                      child: TextField(
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(300.0)),
+                            hintText: "search restaurant . . .",
+                            hintStyle: TextStyle(
+                              color: Colors.grey[800],
+                              fontSize: 15,
+                              fontStyle: FontStyle.italic,
+                            )),
+                      ),
+                    );
+                  } else {
+                    customIcon = const Icon(Icons.search);
+                    customSearchBar = const Text("Restaurant App");
+                  }
+                });
+              },
+              icon: customIcon)
+        ],
+        centerTitle: true,
       ),
       body: FutureBuilder<String>(
           future: DefaultAssetBundle.of(context)
               .loadString('assets/local_restaurant.json'),
           builder: (context, snapshot) {
             final List<Restaurant> restaurants = parseJson(snapshot.data);
+            if (restaurants.isEmpty) {
+              return const Text("Data JSON Failed to Load",
+                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500));
+            }
             return ListView.builder(
                 itemCount: restaurants.length,
                 itemBuilder: (context, index) {
@@ -48,22 +88,23 @@ Widget _restaurantListItem(BuildContext context, Restaurant restaurant) {
   return Container(
     margin: const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 5),
     child: _CustomListItem(
-        picture: Container(
-            height: 120,
-            alignment: Alignment.center,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.network(
-                restaurant.picId,
-                fit: BoxFit.cover,
-                width: 150,
-                height: 150,
-              ),
-            )),
-        name: restaurant.name,
-        city: restaurant.city,
-        rating: restaurant.rating,
-        restaurant: restaurant,),
+      picture: Container(
+          height: 120,
+          alignment: Alignment.center,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8.0),
+            child: Image.network(
+              restaurant.picId,
+              fit: BoxFit.cover,
+              width: 150,
+              height: 150,
+            ),
+          )),
+      name: restaurant.name,
+      city: restaurant.city,
+      rating: restaurant.rating,
+      restaurant: restaurant,
+    ),
   );
 }
 
@@ -100,7 +141,8 @@ class _CustomListItem extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Navigator.pushNamed(context, RestaurantDetail.routeName, arguments: restaurant);
+        Navigator.pushNamed(context, RestaurantDetail.routeName,
+            arguments: restaurant);
       },
     );
   }

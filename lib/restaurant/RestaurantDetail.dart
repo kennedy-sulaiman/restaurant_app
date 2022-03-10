@@ -111,21 +111,25 @@ Widget _menusItemList(Food food) {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                width: double.infinity,
-                height: 180,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Container(
-                      color: Colors.blueAccent,
-                    )),
+              Expanded(
+                flex: 6,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Container(
+                        color: Colors.blueAccent,
+                      )),
+                ),
               ),
               const SizedBox(height: 10.0),
-              Text(
-                food.name,
-                style:
-                    const TextStyle(fontSize: 15, fontWeight: FontWeight.w100),
-              )
+              Expanded(
+                  flex: 1,
+                  child: Text(
+                    food.name,
+                    style: const TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.w100),
+                  ))
             ],
           ),
         )),

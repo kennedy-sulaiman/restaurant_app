@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/restaurant/RestaurantDetail.dart';
-import 'package:restaurant_app/restaurant/RestaurantList.dart';
-import 'package:restaurant_app/restaurant/Restaurants.dart';
+import 'package:restaurant_app/restaurant/restaurant_detail_page.dart';
+import 'package:restaurant_app/restaurant/restaurant_list_page.dart';
+import 'package:restaurant_app/restaurant/domain/entities/restaurant.dart';
 
 void main() {
   runApp(const MyApp());

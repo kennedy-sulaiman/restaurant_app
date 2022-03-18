@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/restaurant/Restaurants.dart';
+import 'package:restaurant_app/restaurant/data/models/foods_and_drinks.dart';
+import 'package:restaurant_app/restaurant/domain/entities/restaurant.dart';
 
 class RestaurantDetail extends StatelessWidget {
   static const routeName = '/restaurant_detail';
@@ -26,7 +27,7 @@ class RestaurantDetail extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.network(
-                      restaurant.picId,
+                      restaurant.pictureId,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -62,7 +63,7 @@ class RestaurantDetail extends StatelessWidget {
                         _subtitleText("Description"),
                         const SizedBox(height: 15),
                         Text(
-                          "\t\t\t\t" + restaurant.desc,
+                          "\t\t\t\t" + restaurant.description,
                           textAlign: TextAlign.justify,
                           style: const TextStyle(fontSize: 18),
                         ),
@@ -70,10 +71,10 @@ class RestaurantDetail extends StatelessWidget {
                         _subtitleText("Menus"),
                         const SizedBox(height: 15.0),
                         _subtitleText("Foods"),
-                        _menusGridView(restaurant.menus.foods),
+                       // _menusGridView(restaurant.menus.foods),
                         const SizedBox(height: 15.0),
                         _subtitleText("Drinks"),
-                        _menusGridView(restaurant.menus.drinks)
+                        //_menusGridView(restaurant.menus.drinks)
                       ],
                     )),
               ],
@@ -102,7 +103,7 @@ Widget _menusGridView(List product) {
       });
 }
 
-Widget _menusItemList(Food food) {
+Widget _menusItemList(FoodsAndDrinks food) {
   return InkWell(
     child: Card(
         margin: const EdgeInsets.all(15.0),

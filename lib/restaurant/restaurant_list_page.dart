@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/restaurant/RestaurantDetail.dart';
-import 'Restaurants.dart';
+import 'package:restaurant_app/restaurant/restaurant_detail_page.dart';
+import 'domain/entities/restaurant.dart';
 
 class RestaurantList extends StatefulWidget {
   static const routeName = '/restaurant_list';
@@ -79,9 +79,10 @@ List<Restaurant> parseJson(String? json) {
 
   final parsed = jsonDecode(json);
 
-  final restaurant = Restaurants.fromJson(parsed);
+  // final restaurant = Restaurants.fromJson(parsed);
 
-  return restaurant.restaurant;
+  // return restaurant.restaurant;
+  return parsed;
 }
 
 Widget _restaurantListItem(BuildContext context, Restaurant restaurant) {
@@ -94,7 +95,7 @@ Widget _restaurantListItem(BuildContext context, Restaurant restaurant) {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
             child: Image.network(
-              restaurant.picId,
+              restaurant.pictureId,
               fit: BoxFit.cover,
               width: 150,
               height: 150,

@@ -1,6 +1,5 @@
-import 'dart:convert';
-
 import 'package:equatable/equatable.dart';
+import 'package:restaurant_app/core/enum_picture_size.dart';
 
 class Restaurant extends Equatable {
   final String id;
@@ -18,6 +17,17 @@ class Restaurant extends Equatable {
     required this.city,
     required this.rating,
   });
+
+  String getPicture(PictureSize size) {
+    switch (size) {
+      case PictureSize.small:
+        return "https://restaurant-api.dicoding.dev/images/small/$pictureId";
+      case PictureSize.medium:
+        return "https://restaurant-api.dicoding.dev/images/medium/$pictureId";
+      case PictureSize.large:
+        return "https://restaurant-api.dicoding.dev/images/large/$pictureId";
+    }
+  }
 
   @override
   List<Object> get props {

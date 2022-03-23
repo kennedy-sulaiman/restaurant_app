@@ -10,7 +10,8 @@ import 'package:restaurant_app/restaurant/domain/entities/restaurant_detail.dart
 const tRestaurant = Restaurant(
     id: "rqdv5juczeskfw1e867",
     name: "Melting Pot",
-    description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. ...",
+    description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. ...",
     pictureId: "14",
     city: "Medan",
     rating: 4.2);
@@ -28,11 +29,11 @@ const tRestaurantDetail = RestaurantDetail(
     rating: 4.2,
     customerReviews: customerReviews);
 
-
 const tRestaurantModel = RestaurantModel(
     id: "rqdv5juczeskfw1e867",
     name: "Melting Pot",
-    description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. ...",
+    description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. ...",
     pictureId: "14",
     city: "Medan",
     rating: 4.2);
@@ -61,11 +62,13 @@ const List<FoodsAndDrinks> foods = [
 ];
 
 const List<FoodsAndDrinks> drinks = [
-   FoodsAndDrinks(name: "Es krim"),
-   FoodsAndDrinks(name: "Sirup")
+  FoodsAndDrinks(name: "Es krim"),
+  FoodsAndDrinks(name: "Sirup")
 ];
 
 const List<CustomerReviews> customerReviews = [
-   CustomerReviews(
-    name: "Ahmad", review: "Tidak rekomendasi untuk pelajar!", date: "13 November 2019"),
+  CustomerReviews(
+      name: "Ahmad",
+      review: "Tidak rekomendasi untuk pelajar!",
+      date: "13 November 2019"),
 ];

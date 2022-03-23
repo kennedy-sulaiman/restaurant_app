@@ -1,6 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
-
 import 'package:restaurant_app/core/error/failure.dart';
 import 'package:restaurant_app/core/usecases/usecase.dart';
 import 'package:restaurant_app/restaurant/domain/repositories/restaurant_repository.dart';
